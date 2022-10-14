@@ -11,7 +11,7 @@ public class ProfileBaseException extends Exception {
 
 	private static final long serialVersionUID = 5722683428999476528L;
 	private String errorCode;
-	private String ApiName;
+	private String apiName;
 	private Exception e;
 	private ProfileCustomException customException;
 

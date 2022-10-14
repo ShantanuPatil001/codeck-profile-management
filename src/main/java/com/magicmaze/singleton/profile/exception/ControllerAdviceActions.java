@@ -43,7 +43,7 @@ public class ControllerAdviceActions {
         return new ResponseEntity<>(payload, payload.getHttpErrorCode());
     }
 	
-	private Map<String, String> handleExceptionWithCause(String errorCode, String ApiName){
+	private Map<String, String> handleExceptionWithCause(String errorCode, String apiName){
 		Map<String, String> messageUnderCause = new HashMap<>();
 		if(properties == null) {
 			properties = new Properties();
@@ -53,19 +53,19 @@ public class ControllerAdviceActions {
 				log.error("Error Main File Not Found");
 			}
 		}
-		Properties ApiProps = new Properties();
+		Properties apiProps = new Properties();
 		try {
-			File file = ResourceUtils.getFile("classpath:ErrorCodes/ApiErrorMapCodes/" + ApiName + ".properties");
+			File file = ResourceUtils.getFile("classpath:ErrorCodes/ApiErrorMapCodes/" + apiName + ".properties");
 			InputStream in = new FileInputStream(file);
-			ApiProps.load(in);
+			apiProps.load(in);
 		} catch (FileNotFoundException e) {
-			log.error("Error API " + ApiName + "File Not Found");
+			log.error("Error API " + apiName + "File Not Found");
 		} catch (IOException e) {
-			log.error("Error API " + ApiName + "File Not Found");
+			log.error("Error API " + apiName + "File Not Found");
 		}
 		
-		if(ApiProps.containsKey(errorCode)) {
-			String errorMappedCode = ApiProps.getProperty(errorCode);
+		if(apiProps.containsKey(errorCode)) {
+			String errorMappedCode = apiProps.getProperty(errorCode);
 			messageUnderCause.put("code", properties.getProperty(errorMappedCode+".code"));
 			messageUnderCause.put("message", properties.getProperty(errorMappedCode+".message"));
 			messageUnderCause.put("description", properties.getProperty(errorMappedCode+".description"));

@@ -1,4 +1,4 @@
-package com.magicmaze.singleton.profile.dao.user.registration;
+package com.magicmaze.singleton.profile.dao.pojo;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,7 +12,7 @@ import lombok.Data;
 public class UserRegistration {
 
 	 @Id
-     private String id;
+     private String key;
 	 private String emailId;
 	 private String userName;
 	 private String mobileNumber;
